@@ -1,0 +1,41 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+
+    <OutputType>WinExe</OutputType>
+  </PropertyGroup>
+
+  <ItemGroup>
+		<PackageReference Include="System.Data.SqlClient" Version="4.6.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.1" />
+    <PackageReference Include="xunit" Version="2.4.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="coverlet.collector" Version="1.3.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="D:\4 семестр\КПІ\lab4\IIG.BinaryFlag\IIG.BinaryFlag\IIG.BinaryFlag.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="IIG.DatabaseConnectionUtils">
+      <HintPath>D:\4 семестр\КПІ\lab4\IIG.DatabaseConnectionUtils\IIG.DatabaseConnectionUtils.dll</HintPath>
+    </Reference>
+    <Reference Include="IIG.FileWorker">
+      <HintPath>D:\4 семестр\КПІ\lab4\IIG.FileWorker\IIG.FileWorker.dll</HintPath>
+    </Reference>
+    <Reference Include="IIG.PasswordHashingUtils">
+      <HintPath>D:\4 семестр\КПІ\lab4\IIG.PasswordHashingUtils.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

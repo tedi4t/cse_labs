@@ -4,7 +4,11 @@ using IIG.BinaryFlag;
 
 namespace cse_lab3
 {
-	public class ConstructorTests
+  //Here we test variant where we can get 
+  //UintConcreateBinaryFlag in constructor if len is from 2 to 32
+  //ULongConcreateBinaryFlag in constructor if len is from 33 to 64
+  //UintArrayConcreateBinaryFlag in constructor if len is from 65 to 17179868704
+  public class ConstructorTests
   {
 
     [Fact]
@@ -205,6 +209,10 @@ namespace cse_lab3
 
   }
 
+  //Here we test variant where we can get 
+  //UintConcreateBinaryFlag in constructor if len is from 2 to 32
+  //ULongConcreateBinaryFlag in constructor if len is from 33 to 64
+  //UintArrayConcreateBinaryFlag in constructor if len is from 65 to 17179868704
   public class getFlagTests
 	{
     [Fact]
@@ -428,6 +436,10 @@ namespace cse_lab3
     }
   }
 
+  //Here we test variant where we can get 
+  //UintConcreateBinaryFlag in constructor if len is from 2 to 32
+  //ULongConcreateBinaryFlag in constructor if len is from 33 to 64
+  //UintArrayConcreateBinaryFlag in constructor if len is from 65 to 17179868704
   public class disposeTests
 	{
     [Fact]
@@ -641,6 +653,10 @@ namespace cse_lab3
     }
   }
 
+  //Here we test variant where we can get 
+  //UintConcreateBinaryFlag in constructor if len is from 2 to 32
+  //ULongConcreateBinaryFlag in constructor if len is from 33 to 64
+  //UintArrayConcreateBinaryFlag in constructor if len is from 65 to 17179868704
   public class setFlagText
 	{
     [Fact]
@@ -854,6 +870,10 @@ namespace cse_lab3
     }
   }
 
+  //Here we test variant where we can get 
+  //UintConcreateBinaryFlag in constructor if len is from 2 to 32
+  //ULongConcreateBinaryFlag in constructor if len is from 33 to 64
+  //UintArrayConcreateBinaryFlag in constructor if len is from 65 to 17179868704
   public class ResetFlagTests
 	{
     [Fact]

@@ -9,9 +9,7 @@ namespace cse_lab4
 {
 	public class TestPasswordHashingFile
 	{
-		private static String longPassword = new string('a', 100000000);
-		private static String longPath = new string('a', 100000000) + ".txt";
-
+		//Test GetHash in PasswordHasher and Write in BaseFileWorker functions
 		[Theory]
 		[InlineData("file1.txt", "password", "salt", 1)]
 		[InlineData("file2.txt", "pass", "", 2)]
@@ -37,6 +35,7 @@ namespace cse_lab4
 			}
 		}
 
+		//Test GetHash in PasswordHasher and TryWrite in BaseFileWorker functions
 		[Theory]
 		[InlineData("file1.txt", 1, "/!:&?,", "{}[]!&?*", 2)]
 		[InlineData("file2.txt", 1, "тутЯкийсьПароль", "salt", 1)]
@@ -59,6 +58,7 @@ namespace cse_lab4
 			}
 		}
 
+		//Test GetHash in PasswordHasher and TryWrite with less than one attempts in BaseFileWorker functions
 		[Theory]
 		[InlineData("file1.txt", 0, "/!:&?,", "{}[]!&?*", 2)]
 		[InlineData("file2.txt", -1, "тутЯкийсьПароль", "salt", 1)]
@@ -76,6 +76,7 @@ namespace cse_lab4
 			}
 		}
 
+		//Test GetHash in PasswordHasher and Write files of different formats in BaseFileWorker functions
 		[Theory]
 		[InlineData("file.txt")]
 		[InlineData("file")]
@@ -102,6 +103,7 @@ namespace cse_lab4
 			}
 		}
 
+		//Test GetHash in PasswordHasher and ReadLines in BaseFileWorker functions
 		[Theory]
 		[InlineData("file1.txt", "password", "salt", 1)]
 		[InlineData("file2.txt", "pass", "", 2)]
@@ -129,6 +131,7 @@ namespace cse_lab4
 			}
 		}
 
+		//Test LongPasswordWrite functions
 		[Fact]
 		public void GetHash_LongPassword()
 		{
@@ -136,6 +139,29 @@ namespace cse_lab4
 			String salt = "salt";
 			uint? adlerMod = 1;
 			String path = "file.txt";
+
+			try
+			{
+				String passwordHash = PasswordHasher.GetHash(password, salt, adlerMod);
+				var result = BaseFileWorker.Write(passwordHash, path);
+				Assert.True(result);
+				String dataInFile = BaseFileWorker.ReadAll(path);
+				Assert.Equal(passwordHash, dataInFile);
+			}
+			catch (Exception err)
+			{
+				Assert.False(true, err.Message);
+			}
+		}
+
+		//Test LongPathWrite functions
+		[Fact]
+		public void GetHash_LongPath()
+		{
+			String password = "pass";
+			String salt = "salt";
+			uint? adlerMod = 1;
+			String path = new string('a', 1000000) + ".txt";
 
 			try
 			{
@@ -164,6 +190,7 @@ namespace cse_lab4
 			Server, Database, IsTrusted, Login, Password, ConnectionTimeout
 		);
 
+		//Test MultipleBinaryFlag inizialization of values that are inside of range
 		[Theory]
 		[InlineData(2, true)]
 		[InlineData(2, false)]
@@ -199,6 +226,7 @@ namespace cse_lab4
 			}
 		}
 
+		//Test MultipleBinaryFlag inizialization of values that are out of range
 		[Theory]
 		[InlineData(1, true)]
 		[InlineData(1, false)]

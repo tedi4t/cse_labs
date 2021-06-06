@@ -22,17 +22,11 @@ namespace cse_lab4
 		[InlineData("file8.txt", "pass", "", UInt32.MinValue)]
 		public void GetHash_Write(String path, String password, String salt, UInt32 adlerMod)
 		{
-			try
-			{
-				String passwordHash = PasswordHasher.GetHash(password, salt, adlerMod);
-				var result = BaseFileWorker.Write(passwordHash, path);
-				Assert.True(result);
-				String dataInFile = BaseFileWorker.ReadAll(path);
-				Assert.Equal(passwordHash, dataInFile);
-			} catch (Exception err)
-			{
-				Assert.False(true, err.Message);
-			}
+			String passwordHash = PasswordHasher.GetHash(password, salt, adlerMod);
+			var result = BaseFileWorker.Write(passwordHash, path);
+			Assert.True(result);
+			String dataInFile = BaseFileWorker.ReadAll(path);
+			Assert.Equal(passwordHash, dataInFile);
 		}
 
 		//Test GetHash in PasswordHasher and TryWrite in BaseFileWorker functions
@@ -44,18 +38,11 @@ namespace cse_lab4
 		[InlineData("file5.txt", Int32.MaxValue, "\n(\\w)(\\s+)", "(?i)(<title.*?>)", 1)]
 		public void GetHash_TryWrite(String path, Int32 attempts, String password, String salt, UInt32 adlerMod)
 		{
-			try
-			{
-				String passwordHash = PasswordHasher.GetHash(password, salt, adlerMod);
-				var result = BaseFileWorker.TryWrite(passwordHash, path, attempts);
-				Assert.True(result);
-				String dataInFile = BaseFileWorker.ReadAll(path);
-				Assert.Equal(passwordHash, dataInFile);
-			}
-			catch (Exception err)
-			{
-				Assert.False(true, err.Message);
-			}
+			String passwordHash = PasswordHasher.GetHash(password, salt, adlerMod);
+			var result = BaseFileWorker.TryWrite(passwordHash, path, attempts);
+			Assert.True(result);
+			String dataInFile = BaseFileWorker.ReadAll(path);
+			Assert.Equal(passwordHash, dataInFile);
 		}
 
 		//Test GetHash in PasswordHasher and TryWrite with less than one attempts in BaseFileWorker functions
@@ -68,11 +55,11 @@ namespace cse_lab4
 			{
 				String passwordHash = PasswordHasher.GetHash(password, salt, adlerMod);
 				var result = BaseFileWorker.TryWrite(passwordHash, path, attempts);
-				Assert.True(result);
+				Assert.False(result);
 			}
 			catch (Exception)
 			{
-				Assert.True(true);
+				
 			}
 		}
 
@@ -89,18 +76,11 @@ namespace cse_lab4
 			String password = "password";
 			String salt = "salt";
 			uint? adlerMod = 1;
-			try
-			{
-				String passwordHash = PasswordHasher.GetHash(password, salt, adlerMod);
-				var result = BaseFileWorker.Write(passwordHash, path);
-				Assert.True(result);
-				String dataInFile = BaseFileWorker.ReadAll(path);
-				Assert.Equal(passwordHash, dataInFile);
-			}
-			catch (Exception err)
-			{
-				Assert.False(true, err.Message);
-			}
+			String passwordHash = PasswordHasher.GetHash(password, salt, adlerMod);
+			var result = BaseFileWorker.Write(passwordHash, path);
+			Assert.True(result);
+			String dataInFile = BaseFileWorker.ReadAll(path);
+			Assert.Equal(passwordHash, dataInFile);
 		}
 
 		//Test GetHash in PasswordHasher and ReadLines in BaseFileWorker functions
@@ -116,19 +96,12 @@ namespace cse_lab4
 		[InlineData("file8.txt", "pass", "", UInt32.MinValue)]
 		public void GetHash_ReadLines(String path, String password, String salt, UInt32 adlerMod)
 		{
-			try
-			{
-				String passwordHash = PasswordHasher.GetHash(password, salt, adlerMod);
-				var result = BaseFileWorker.Write(passwordHash, path);
-				Assert.True(result);
-				String[] dataInFile = BaseFileWorker.ReadLines(path);
-				String lastItem = dataInFile[dataInFile.Length - 1];
-				Assert.Equal(passwordHash, lastItem);
-			}
-			catch (Exception err)
-			{
-				Assert.False(true, err.Message);
-			}
+			String passwordHash = PasswordHasher.GetHash(password, salt, adlerMod);
+			var result = BaseFileWorker.Write(passwordHash, path);
+			Assert.True(result);
+			String[] dataInFile = BaseFileWorker.ReadLines(path);
+			String lastItem = dataInFile[dataInFile.Length - 1];
+			Assert.Equal(passwordHash, lastItem);
 		}
 
 		//Test LongPasswordWrite functions
@@ -139,19 +112,11 @@ namespace cse_lab4
 			String salt = "salt";
 			uint? adlerMod = 1;
 			String path = "file.txt";
-
-			try
-			{
-				String passwordHash = PasswordHasher.GetHash(password, salt, adlerMod);
-				var result = BaseFileWorker.Write(passwordHash, path);
-				Assert.True(result);
-				String dataInFile = BaseFileWorker.ReadAll(path);
-				Assert.Equal(passwordHash, dataInFile);
-			}
-			catch (Exception err)
-			{
-				Assert.False(true, err.Message);
-			}
+			String passwordHash = PasswordHasher.GetHash(password, salt, adlerMod);
+			var result = BaseFileWorker.Write(passwordHash, path);
+			Assert.True(result);
+			String dataInFile = BaseFileWorker.ReadAll(path);
+			Assert.Equal(passwordHash, dataInFile);
 		}
 
 		//Test LongPathWrite functions
@@ -162,19 +127,11 @@ namespace cse_lab4
 			String salt = "salt";
 			uint? adlerMod = 1;
 			String path = new string('a', 1000000) + ".txt";
-
-			try
-			{
-				String passwordHash = PasswordHasher.GetHash(password, salt, adlerMod);
-				var result = BaseFileWorker.Write(passwordHash, path);
-				Assert.True(result);
-				String dataInFile = BaseFileWorker.ReadAll(path);
-				Assert.Equal(passwordHash, dataInFile);
-			}
-			catch (Exception err)
-			{
-				Assert.False(true, err.Message);
-			}
+			String passwordHash = PasswordHasher.GetHash(password, salt, adlerMod);
+			var result = BaseFileWorker.Write(passwordHash, path);
+			Assert.True(result);
+			String dataInFile = BaseFileWorker.ReadAll(path);
+			Assert.Equal(passwordHash, dataInFile);
 		}
 	}
 
@@ -190,6 +147,35 @@ namespace cse_lab4
 			Server, Database, IsTrusted, Login, Password, ConnectionTimeout
 		);
 
+		//Test MultipleBinaryFlag setFlag for database
+		[Theory]
+		[InlineData(32, true, 10)]
+		[InlineData(32, false, 20)]
+		public void TestSetFlag(ulong len, Boolean initialValue, ulong setValue)
+		{
+			MultipleBinaryFlag binaryFlag = new MultipleBinaryFlag(len, initialValue);
+			binaryFlag.SetFlag(setValue);
+			String flagStr = binaryFlag.ToString();
+			var boolean = binaryFlag.GetFlag() ?? false;
+			Boolean added = flagpoleDatabase.AddFlag(flagStr, boolean);
+			Assert.True(added);
+		}
+
+		//Test MultipleBinaryFlag resetFlag for database
+		[Theory]
+		[InlineData(32, true, 10)]
+		[InlineData(32, false, 20)]
+		public void TestResetFlag(ulong len, Boolean initialValue, ulong setValue)
+		{
+			MultipleBinaryFlag binaryFlag = new MultipleBinaryFlag(len, initialValue);
+			binaryFlag.ResetFlag(setValue);
+			String flagStr = binaryFlag.ToString();
+			var boolean = binaryFlag.GetFlag() ?? false;
+			Boolean added = flagpoleDatabase.AddFlag(flagStr, boolean);
+			Assert.True(added);
+		}
+
+
 		//Test MultipleBinaryFlag inizialization of values that are inside of range
 		[Theory]
 		[InlineData(2, true)]
@@ -204,26 +190,19 @@ namespace cse_lab4
 		[InlineData(65, false)]
 		public void TestInRangeValues(ulong len, Boolean initialValue)
 		{
-			try
-			{
-				MultipleBinaryFlag binaryFlag = new MultipleBinaryFlag(len, initialValue);
-				String flagStr = binaryFlag.ToString();
-				Boolean flagValue = binaryFlag.GetFlag() ?? false;
-				var boolean = binaryFlag.GetFlag() ?? false;
-				Boolean added = flagpoleDatabase.AddFlag(binaryFlag.ToString(), boolean);
-				Assert.True(added);
-				String resultFlagStr;
-				bool? resultFlagValue;
-				int? flagID = flagpoleDatabase.GetIntBySql("SELECT MAX(MultipleBinaryFlagID) FROM MultipleBinaryFlags");
-				Boolean got = flagpoleDatabase.GetFlag((int)flagID, out resultFlagStr, out resultFlagValue);
-				Assert.True(got);
-				Assert.Equal(resultFlagStr, binaryFlag.ToString());
-				Assert.Equal(resultFlagValue, flagValue);
-			}
-			catch (Exception err)
-			{
-				Assert.False(true, err.Message);
-			}
+			MultipleBinaryFlag binaryFlag = new MultipleBinaryFlag(len, initialValue);
+			String flagStr = binaryFlag.ToString();
+			Boolean flagValue = binaryFlag.GetFlag() ?? false;
+			var boolean = binaryFlag.GetFlag() ?? false;
+			Boolean added = flagpoleDatabase.AddFlag(binaryFlag.ToString(), boolean);
+			Assert.True(added);
+			String resultFlagStr;
+			bool? resultFlagValue;
+			int? flagID = flagpoleDatabase.GetIntBySql("SELECT MAX(MultipleBinaryFlagID) FROM MultipleBinaryFlags");
+			Boolean got = flagpoleDatabase.GetFlag((int)flagID, out resultFlagStr, out resultFlagValue);
+			Assert.True(got);
+			Assert.Equal(binaryFlag.ToString(), resultFlagStr);
+			Assert.Equal(flagValue, resultFlagValue);
 		}
 
 		//Test MultipleBinaryFlag inizialization of values that are out of range
@@ -241,7 +220,23 @@ namespace cse_lab4
 			}
 			catch (Exception)
 			{
-				Assert.True(true);
+				
+			}
+		}
+
+		//Test MultipleBinaryFlag inizialization of values that are wrong, must return error
+		[Fact]
+		public void TestWrongData()
+		{
+			try
+			{
+				String flagStr = "Some string binary flag";
+				var boolean = false;
+				flagpoleDatabase.AddFlag(flagStr, boolean);
+				Assert.False(true);
+			} catch(Exception)
+			{
+
 			}
 		}
 	}
